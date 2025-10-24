@@ -2,16 +2,27 @@
 CC = gcc
 
 # compiler flags:
-#-g adds debugging information to the executable file
-#-Wall turns on most, but not all, compiler warnings
-CFLAGS = -g -Wall
+#-W options turn on most, but not all, compiler warnings
+# -lcrypto : libcrypto du projet OpenSSL
+CFLAGS = -O3 -Wall -Wextra -lcrypto
 
 # the build target executable:
-TARGET = main
+TARGET = precomputed_hash_table
 
 all: $(TARGET)
 
-$(TARGET): $(TARGET).c
-	$(CC) $(CFLAGS) -o $(TARGET) $(TARGET).c
+$(TARGET): $(TARGET).o generate_mode.o
+	$(CC) $(CFLAGS) -o $(TARGET) $(TARGET).o generate_mode.o
+	mv $(TARGET) ../
+
+$(TARGET).o: $(TARGET).c generate_mode.h
+	$(CC) $(CFLAGS) -c $(TARGET).c
+
+generate_mode.o: generate_mode.c generate_mode.h
+	$(CC) $(CFLAGS) -c generate_mode.c
+
 clean:
-	rm $(TARGET)
+	rm -f *.o
+
+clean-all: clean
+	rm -f ../$(TARGET)
