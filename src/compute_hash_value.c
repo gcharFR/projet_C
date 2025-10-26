@@ -2,6 +2,7 @@
 #include <string.h>
 
 unsigned int compute_hash_value(char *input, unsigned char *md_value) {
+
    unsigned int md_len; // hash length
    EVP_MD_CTX *mdctx;   // hash context
 

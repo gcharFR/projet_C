@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "generate_mode.h"
+#include "lookup_mode.h"
 
 int main(int argc, char *argv[]) {
 
@@ -22,19 +23,28 @@ int main(int argc, char *argv[]) {
       }
       return generate_mode(dictionary, PHT);
    }
-   else if (argc == 2 && strcmp(argv[1], "L") == 0) {
+   else if (argc == 3 && strcmp(argv[1], "L") == 0) {
       #ifdef DEBUG
          printf("[DEBUG] Lookup mode\n");
       #endif
+      FILE *PHT = fopen(argv[2], "r");
+      // We should be able to open the PHT file in read mode
+      if (PHT == NULL) {
+         printf("Precomputed hash table file \"%s\" cannot be read, exiting\n", argv[2]);
+         return 0;
+      }
+      return lookup_mode(PHT);
    }
    else {
       printf("Usage :\n");
       printf("   precomputed_hash_table G <dictionary file> <precomputed hash table file>;\n");
-      printf("      Reads clear text passwords in the first file (line by line), generates\n");
-      printf("      the corresponding hash value, then appends at the end of the second file\n");
-      printf("      two new lines, one with the password and one with the hash value\n");
+      printf("      Reads strings in the first file (line by line), generates the corresponding \n");
+      printf("      hash value, then appends at the end of the second file two new lines,\n");
+      printf("      one with the string and one with the hash value\n");
       printf("\n");
-      printf("   precomputed_hash_table L;\n");
+      printf("   precomputed_hash_table L <precomputed hash table file>;\n");
+      printf("      Loads the file and use its data to try to fetch and print on stdout\n");
+      printf("      a string corresponding to each hash value entered on stdin\n");
       return 1;
    }
 
