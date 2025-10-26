@@ -29,15 +29,15 @@ pré-calculée sur la base d'un dictionnaire de chaînes de caractères à fourn
    - `precomputed_hash_table G
                              <fichier dictionnaire>
                              <fichier de condensats pré-calculés>;`
-      Lit des chaînes de caractères dans le dictionnaire (ligne par ligne),
-      génère le condensat correspondant, puis concatène à la fin du deuxième
-      fichier deux nouvelles lignes, une avec la chaîne de caractères et une
-      avec le condensat
+      - Lit des chaînes de caractères dans le dictionnaire (ligne par ligne),
+        génère le condensat correspondant, puis concatène à la fin du deuxième
+        fichier deux nouvelles lignes, une avec la chaîne de caractères et une
+        avec le condensat
    - `precomputed_hash_table L
                              <fichier de condensats pré-calculés>;`
-      Charge le fichier et se sert de ses données pour chercher à récupérer
-      et afficher sur la sortie standard la chaîne de caractères correspondant
-      à chaque condensat saisi sur l'entrée standard'
+      - Charge le fichier et se sert de ses données pour chercher à récupérer
+        et afficher sur la sortie standard la chaîne de caractères correspondant
+        à chaque condensat saisi sur l'entrée standard'
 - Nota Bene : chaque mot de passe d'un fichier dictionnaire doit se terminer
 par un retour à la ligne
 - Codes de retour :
