@@ -111,3 +111,21 @@ char *lookup(node_t *tree, char *key) {
      return lookup(tree->bigger, key);
   }
 }
+
+void delete_tree (node_t *tree) {
+   // First case: nothing to free
+   if (tree == NULL)
+      return;
+   // Otherwise we have to delete subtrees recursively:
+   delete_tree(tree-> smaller);
+   delete_tree(tree->bigger);
+   // And then free the root, including embedded values:
+   #ifdef DEBUG
+      printf("[DEBUG] Node freeing with key \"%s\" and value \"%s\"\n",
+             tree->key,
+             tree->value);
+   #endif
+   free(tree->key);
+   free(tree->value);
+   free(tree);
+}

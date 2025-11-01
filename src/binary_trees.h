@@ -21,3 +21,6 @@ char *lookup(node_t *tree, char *key);
 /* Looks for any association with key previously recorded in tree, then returns
    the corresponding value if successful, or NULL otherwise.
    key should not be NULL. */
+
+void delete_tree (node_t *tree);
+   /* Makes the tree unusable */

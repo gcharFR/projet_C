@@ -89,6 +89,7 @@ int generate_mode(FILE *dictionaryFile, FILE *PHTfile) {
 
    printf("Finished reading the dictionary file, %lu lines have been read\n", current_line - 1);
 
+   free(current_string);
    fclose(dictionaryFile);
    fclose(PHTfile);
    return 0;

@@ -98,4 +98,7 @@ int lookup_mode(FILE *PHTfile) {
    }
    while (1);
 
+   delete_tree (binary_tree);
+   free(current_hash);
+   free(current_string);
 }
