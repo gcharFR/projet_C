@@ -79,21 +79,22 @@ int lookup_mode(FILE *PHTfile) {
       printf("Please type an MD5 hash value in hexadecimal format: ");
       fflush(stdout);
 
-      // Get the hash value:
-      fgets(current_hash, MAXHASHLENGTH + 2, stdin);
-
       // Process it:
-      if (current_hash[strlen(current_hash)-1] != '\n')
+      if (fgets(current_hash, MAXHASHLENGTH + 2, stdin) == NULL) { // Get the hash value
+         printf("\nEnd of file\n");
+         break;
+      }
+      else if (current_hash[strlen(current_hash)-1] != '\n')
          printf("ERROR: This hash value is more than %lu characters long, please rebuild with a greater MAXHASHLENGTH value\n",
                 MAXHASHLENGTH * sizeof(char));
       else {
          // Let's remove the trailing newline, that is not part of the actual string:
          current_hash[strlen(current_hash)-1] = '\0';
-         current_string = lookup(binary_tree, current_hash);
-         if (current_string == NULL)
+         char *result_string = lookup(binary_tree, current_hash);
+         if (result_string == NULL)
             printf("\tNo string having this hash value has been found\n");
          else
-            printf("\tThis string has this hash value: \"%s\"\n", current_string);
+            printf("\tThis string has this hash value: \"%s\"\n", result_string);
       }
    }
    while (1);
@@ -101,4 +102,5 @@ int lookup_mode(FILE *PHTfile) {
    delete_tree (binary_tree);
    free(current_hash);
    free(current_string);
+   return 0;
 }

@@ -37,7 +37,8 @@ pré-calculée sur la base d'un dictionnaire de chaînes de caractères à fourn
                              <fichier de condensats pré-calculés>;`
       - Charge le fichier et se sert de ses données pour chercher à récupérer
         et afficher sur la sortie standard la chaîne de caractères correspondant
-        à chaque condensat saisi sur l'entrée standard'
+        à chaque condensat saisi sur l'entrée standard, éventuellement redirigée
+        depuis un fichier. La saisie peut être interrompue avec Ctrl-D
 - Nota Bene : chaque mot de passe d'un fichier dictionnaire doit se terminer
 par un retour à la ligne
 - Codes de retour :
